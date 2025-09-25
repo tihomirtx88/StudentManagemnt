@@ -26,3 +26,14 @@ def search_students_by_name(name):
     cursor.close()
     conn.close()
     return rows
+
+def update_student(student_id, name, course, mobile):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute(
+        "UPDATE students SET name = ?, course = ?, mobile = ? WHERE id = ?",
+        (name, course, mobile, student_id)
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()

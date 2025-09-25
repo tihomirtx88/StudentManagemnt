@@ -6,5 +6,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
-    window.loadData()  # Зареждане на студентите
+    window.loadData()
     sys.exit(app.exec())
