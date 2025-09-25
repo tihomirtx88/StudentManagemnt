@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar, QPushButton
+from PyQt6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar, QPushButton, QMessageBox
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 
@@ -86,5 +86,16 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def delete(self):
-        dialog = DeleteDialog(self)
+        index = self.table.currentRow()
+        if index < 0:
+            QMessageBox.warning(self, "Error", "No row selected!")
+            return
+
+        id_item = self.table.item(index, 0)
+        if not id_item:
+            QMessageBox.warning(self, "Error", "Invalid student ID!")
+            return
+
+        student_id = int(id_item.text())
+        dialog = DeleteDialog(self, student_id)
         dialog.exec()

@@ -86,8 +86,6 @@ class EditDialog(QDialog):
         course = self.course_name.currentText().strip()
         mobile = self.mobile.text().strip()
 
-        #Validation fields
-
         # Validation fields
         if not name:
             QMessageBox.warning(self, "Error", "Name is required.")
