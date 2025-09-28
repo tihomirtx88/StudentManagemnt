@@ -6,6 +6,7 @@ from dialogs.insert_dialog import InsertDialog
 from dialogs.search_dialog import SearchDialog
 from dialogs.edit_dialog import EditDialog
 from dialogs.delete_dialog import DeleteDialog
+from dialogs.about_dialog import AboutDialog
 import db  # връзка с базата
 
 class MainWindow(QMainWindow):
@@ -30,6 +31,7 @@ class MainWindow(QMainWindow):
 
         about_action = QAction("About", self)
         help_menu.addAction(about_action)
+        about_action.triggered.connect(self.w)
 
         # Таблица
         self.table = QTableWidget()
@@ -98,4 +100,8 @@ class MainWindow(QMainWindow):
 
         student_id = int(id_item.text())
         dialog = DeleteDialog(self, student_id)
+        dialog.exec()
+
+    def about(self):
+        dialog = AboutDialog(self)
         dialog.exec()
